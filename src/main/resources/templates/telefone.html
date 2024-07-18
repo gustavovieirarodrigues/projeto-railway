@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Cadastrar Telefone</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">
+                            Principal
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pessoa">
+                            Cadastrar Pessoa
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/telefone">
+                            Cadastrar Telefone
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 main">
+            <div class="conteudo">    <h2>Cadastrar Telefone</h2>
+    <form th:action="@{/telefone}" th:object="${telefone}" method="post">
+        <div class="form-group">
+            <label for="usuario">Usuário</label>
+            <select id="usuario" name="usuario.id" class="form-control" required>
+                <option th:each="pessoa : ${pessoas}" th:value="${pessoa.id}" th:text="${pessoa.nome} + ' ' + ${pessoa.sobrenome}+' '+'Email: '+${pessoa.email}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ddd">DDD</label>
+            <input type="text" id="ddd" name="ddd" class="form-control" th:field="*{ddd}" required/>
+        </div>
+        <div class="form-group">
+            <label for="numero">Número</label>
+            <input type="text" id="numero" name="numero" class="form-control" th:field="*{numero}" required/>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+            </div>
+        </main>
+</div>
+</div>
+</body>
+</html>

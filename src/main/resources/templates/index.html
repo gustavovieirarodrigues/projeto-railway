@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Principal</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">
+                            Principal
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pessoa">
+                            Cadastrar Pessoa
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/telefone">
+                            Cadastrar Telefone
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 main">
+            <div class="conteudo">
+                <h2>Lista de Pessoas</h2>
+                <a href="/pessoa" class="btn btn-primary btn-cadastro">Cadastrar Pessoa</a>
+                <a href="/telefone" class="btn btn-primary btn-cadastro">Cadastrar Telefone</a>
+                <table class="table table-striped mt-4">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Sobrenome</th>
+                        <th>Email</th>
+                        <th>Estado</th>
+                        <th>Telefones</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="pessoa : ${pessoas}">
+                        <td th:text="${pessoa.id}"></td>
+                        <td th:text="${pessoa.nome}"></td>
+                        <td th:text="${pessoa.sobrenome}"></td>
+                        <td th:text="${pessoa.email}"></td>
+                        <td th:text="${pessoa.estado}"></td>
+                        <td>
+                            <ul>
+                                <li th:each="telefone : ${pessoa.telefones}">
+                                    <span th:text="${telefone.ddd}"></span> - <span th:text="${telefone.numero}"></span>
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                            <a th:href="@{/pessoa/{id}(id=${pessoa.id})}" class="btn btn-warning">Editar</a>
+                            <a th:href="@{/pessoa/delete/{id}(id=${pessoa.id})}" class="btn btn-danger">Deletar</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

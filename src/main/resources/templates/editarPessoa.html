@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Editar Pessoa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">
+                            Principal
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pessoa">
+                            Cadastrar Pessoa
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/telefone">
+                            Cadastrar Telefone
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 main">
+            <div class="conteudo">
+                <h2>Editar Pessoa</h2>
+                <form class="cadastro" th:action="@{'/pessoa/' + ${usuario.id}}" method="POST">
+                    <input type="hidden" name="id" th:value="${usuario.id}">
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" class="form-control" id="nome" placeholder="Digite seu nome" name="nome" th:value="${usuario.nome}">
+                    </div>
+                    <div class="form-group">
+                        <label for="sobrenome">Sobrenome:</label>
+                        <input type="text" class="form-control" id="sobrenome" placeholder="Digite seu sobrenome" name="sobrenome" th:value="${usuario.sobrenome}">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="text" class="form-control" id="email" placeholder="Digite seu email" name="email" th:value="${usuario.email}">
+                    </div>
+                    <div class="form-group">
+                        <label for="estado">Estado:</label>
+                        <input type="text" class="form-control" id="estado" placeholder="Digite seu estado" name="estado" th:value="${usuario.estado}">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-cadastro">Salvar Alterações</button>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>
